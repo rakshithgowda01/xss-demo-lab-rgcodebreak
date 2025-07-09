@@ -1,9 +1,10 @@
 
 import React, { useState } from 'react';
-import { Copy, Eye, EyeOff, Skull, Shield, Zap, AlertTriangle } from 'lucide-react';
+import { Copy, Eye, EyeOff, Skull, Shield, Zap, AlertTriangle, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 
 interface DefaceTemplate {
@@ -20,6 +21,7 @@ const DefaceTemplates = () => {
   const [editableTemplates, setEditableTemplates] = useState<{[key: number]: string}>({});
   const [showTemplate, setShowTemplate] = useState<{[key: number]: boolean}>({});
   const [previewMode, setPreviewMode] = useState<{[key: number]: boolean}>({});
+  const [userName, setUserName] = useState<string>('Anonymous Hacker');
 
   const templates: DefaceTemplate[] = [
     {
@@ -321,6 +323,220 @@ Performed by: [Security Researcher] | Report generated automatically
 </div>
 </div>
 </body></html>`
+    },
+    {
+      id: 9,
+      name: "Cyber Neon",
+      description: "Futuristic neon-styled defacement with animations",
+      style: 'modern',
+      preview: "Electric blue and pink neon effects",
+      template: `<html><head><title>Cyber Breach</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000;color:#fff;font-family:'Orbitron',sans-serif;overflow:hidden;height:100vh;position:relative;}
+.grid{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(0,255,255,0.03) 50%,transparent 100%),linear-gradient(0deg,transparent 0%,rgba(255,0,255,0.03) 50%,transparent 100%);background-size:50px 50px;animation:gridMove 20s linear infinite;}
+@keyframes gridMove{0%{transform:translate(0,0)}100%{transform:translate(50px,50px)}}
+.container{position:relative;z-index:2;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.title{font-size:72px;font-weight:900;background:linear-gradient(45deg,#00ffff,#ff00ff,#ffff00,#00ffff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:gradientShift 3s ease-in-out infinite,neonGlow 2s ease-in-out infinite alternate;text-shadow:0 0 30px #00ffff;}
+@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes neonGlow{from{filter:drop-shadow(0 0 20px #00ffff)}to{filter:drop-shadow(0 0 40px #ff00ff)}}
+.subtitle{font-size:24px;margin:20px 0;color:#00ffff;text-shadow:0 0 15px #00ffff;animation:pulse 2s infinite;}
+.message{font-size:16px;margin:10px 0;color:#ccc;opacity:0.8;}
+.hacker-name{color:#ff00ff;font-weight:bold;text-shadow:0 0 15px #ff00ff;}
+.warning{border:2px solid #ffff00;padding:20px;margin:30px 0;background:rgba(255,255,0,0.1);color:#ffff00;text-shadow:0 0 10px #ffff00;animation:warningPulse 1.5s infinite;}
+@keyframes warningPulse{0%,100%{box-shadow:0 0 20px rgba(255,255,0,0.5)}50%{box-shadow:0 0 40px rgba(255,255,0,0.8)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.footer{position:absolute;bottom:20px;font-size:14px;color:#666;}
+</style></head><body>
+<div class="grid"></div>
+<div class="container">
+<div class="title">CYBER BREACH</div>
+<div class="subtitle">NEURAL NETWORK COMPROMISED</div>
+<div class="message">System infiltration successful via XSS vulnerability</div>
+<div class="message">Firewall bypassed • Security protocols disabled</div>
+<div class="warning">
+⚡ UNAUTHORIZED ACCESS GRANTED ⚡<br>
+ADMINISTRATOR PRIVILEGES OBTAINED
+</div>
+<div class="message">Breach executed by: <span class="hacker-name">[HACKER_NAME]</span></div>
+</div>
+<div class="footer">Timestamp: <script>document.write(new Date().toISOString())</script></div>
+<script>
+setInterval(()=>{
+document.body.style.background = Math.random()>0.95 ? 'linear-gradient(45deg,#000,#001122,#000)' : '#000';
+},200);
+</script>
+</body></html>`
+    },
+    {
+      id: 10,
+      name: "Dark Web Terminal",
+      description: "Underground hacker style with terminal aesthetics",
+      style: 'classic',
+      preview: "Dark terminal with green text and ASCII art",
+      template: `<html><head><title>DarkNet Access</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+body{background:#0a0a0a;color:#00ff41;font-family:'Courier Prime',monospace;padding:20px;line-height:1.4;overflow-x:auto;}
+.terminal{background:#111;border:2px solid #00ff41;border-radius:8px;padding:20px;box-shadow:0 0 30px rgba(0,255,65,0.3);max-width:1000px;margin:0 auto;}
+.prompt{color:#00ff41;margin-bottom:10px;}
+.output{margin-bottom:15px;white-space:pre-line;}
+.ascii-art{font-size:12px;line-height:1;color:#00ff41;text-shadow:0 0 10px #00ff41;margin:20px 0;}
+.warning{background:rgba(255,0,0,0.1);border:1px solid #ff0040;padding:15px;margin:20px 0;color:#ff0040;text-shadow:0 0 10px #ff0040;}
+.hacker-info{color:#ffff00;text-shadow:0 0 10px #ffff00;}
+.blinking{animation:blink 1s infinite;}
+@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+.status{color:#00ff41;background:rgba(0,255,65,0.1);padding:5px;display:inline-block;margin:5px 0;}
+</style></head><body>
+<div class="terminal">
+<div class="prompt">darknet@anonymous:~$ exploit --target=website --method=xss</div>
+<div class="output">Initializing XSS payload injection...
+Scanning for vulnerabilities...
+[████████████████████████████████████████] 100%
+Vulnerability found: Reflected XSS
+</div>
+<div class="ascii-art">    ▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀    ███▄    █ ▓█████▄▄▄█████▓
+    ▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒     ██ ▀█   █ ▓█   ▀▓  ██▒ ▓▒
+    ░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░    ▓██  ▀█ ██▒▒███  ▒ ▓██░ ▒░
+    ░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄    ▓██▒  ▐▌██▒▒▓█  ▄░ ▓██▓ ░ 
+    ░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄   ▒██░   ▓██░░▒████▒ ▒██▒ ░ 
+     ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒   ░ ▒░   ▒ ▒ ░░ ▒░ ░ ▒ ░░   
+     ░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░   ░ ░░   ░ ▒░ ░ ░  ░   ░    
+     ░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░       ░   ░ ░    ░    ░      
+       ░          ░  ░   ░     ░  ░               ░    ░  ░        </div>
+<div class="status">[SUCCESS] XSS PAYLOAD EXECUTED SUCCESSFULLY</div>
+<div class="output">darknet@anonymous:~$ whoami
+<span class="hacker-info">[HACKER_NAME] - Elite Security Researcher</span>
+
+darknet@anonymous:~$ cat /proc/exploit_info
+Target: Website Security Assessment
+Method: Cross-Site Scripting (XSS)
+Status: COMPROMISED
+Access Level: CLIENT-SIDE CODE EXECUTION
+
+darknet@anonymous:~$ echo "Mission accomplished"
+Mission accomplished
+</div>
+<div class="warning">
+⚠️  SECURITY BREACH DETECTED  ⚠️
+Unauthorized script execution confirmed
+System integrity compromised
+</div>
+<div class="output">darknet@anonymous:~$ date
+<script>document.write(new Date().toString())</script>
+
+darknet@anonymous:~$ <span class="blinking">_</span></div>
+</div>
+</body></html>`
+    },
+    {
+      id: 11,
+      name: "Retro Synthwave",
+      description: "80s-style retro hacker aesthetic with synthwave colors",
+      style: 'classic',
+      preview: "Purple and pink retro synthwave design",
+      template: `<html><head><title>Retrowave Hack</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:linear-gradient(135deg,#0f0f23 0%,#1a0033 50%,#330066 100%);color:#fff;font-family:'Orbitron',sans-serif;min-height:100vh;overflow:hidden;position:relative;}
+.scanlines{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(transparent 50%,rgba(255,0,128,0.03) 50%);background-size:100% 4px;animation:scanlines 0.1s linear infinite;pointer-events:none;}
+@keyframes scanlines{0%{transform:translateY(0)}100%{transform:translateY(4px)}}
+.grid{position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(rgba(255,0,128,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,0,128,0.1) 1px,transparent 1px);background-size:50px 50px;animation:gridMove 10s linear infinite;}
+@keyframes gridMove{0%{transform:translate(0,0)}100%{transform:translate(50px,50px)}}
+.container{position:relative;z-index:2;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;}
+.title{font-size:64px;font-weight:900;background:linear-gradient(45deg,#ff0080,#00ffff,#8000ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:retroGlow 3s ease-in-out infinite;text-shadow:0 0 20px #ff0080,0 0 40px #ff0080;}
+@keyframes retroGlow{0%,100%{background-position:0% 50%;filter:drop-shadow(0 0 20px #ff0080)}50%{background-position:100% 50%;filter:drop-shadow(0 0 20px #00ffff)}}
+.subtitle{font-size:28px;color:#00ffff;text-shadow:0 0 15px #00ffff;margin:20px 0;animation:pulse 2s infinite;}
+.message{font-size:18px;margin:15px 0;color:#ff0080;text-shadow:0 0 10px #ff0080;}
+.hack-info{background:rgba(255,0,128,0.1);border:2px solid #ff0080;padding:20px;margin:30px 0;border-radius:10px;box-shadow:0 0 30px rgba(255,0,128,0.3);}
+.hacker{color:#00ffff;font-weight:bold;text-shadow:0 0 15px #00ffff;}
+.warning{color:#ffff00;text-shadow:0 0 15px #ffff00;animation:flashWarning 1s infinite;}
+@keyframes flashWarning{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.7}}
+.footer{position:absolute;bottom:20px;font-size:14px;color:#8000ff;text-shadow:0 0 10px #8000ff;}
+</style></head><body>
+<div class="scanlines"></div>
+<div class="grid"></div>
+<div class="container">
+<div class="title">RETROWAVE HACK</div>
+<div class="subtitle">█ SYSTEM BREACHED █</div>
+<div class="message">Welcome to the neon underground</div>
+<div class="hack-info">
+<div class="warning">⚡ XSS VULNERABILITY EXPLOITED ⚡</div>
+<br>
+<div>Target infiltrated successfully</div>
+<div>Neural pathways compromised</div>
+<div>Digital consciousness uploaded</div>
+<br>
+<div>Executed by: <span class="hacker">[HACKER_NAME]</span></div>
+<div>Skill Level: █████████░ 90%</div>
+</div>
+<div class="message">The future is now, and security is an illusion</div>
+</div>
+<div class="footer">Nexus timestamp: <script>document.write(new Date().toISOString())</script></div>
+<script>
+setInterval(()=>{
+if(Math.random()>0.97){
+document.body.style.filter='hue-rotate(45deg) brightness(1.2)';
+setTimeout(()=>document.body.style.filter='none',100);
+}
+},100);
+</script>
+</body></html>`
+    },
+    {
+      id: 12,
+      name: "Virus Alert",
+      description: "Fake antivirus warning style defacement",
+      style: 'modern',
+      preview: "Red warning alerts with virus-style messaging",
+      template: `<html><head><title>VIRUS DETECTED</title><style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#1a0000;color:#fff;font-family:'Arial',sans-serif;overflow:hidden;}
+.warning-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle,#330000,#1a0000);z-index:1000;}
+.virus-alert{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;border:3px solid #ff0000;background:linear-gradient(45deg,#330000,#1a0000);padding:40px;border-radius:15px;box-shadow:0 0 50px #ff0000;animation:alertShake 0.5s infinite;}
+@keyframes alertShake{0%,100%{transform:translate(-50%,-50%)}25%{transform:translate(-52%,-48%)}75%{transform:translate(-48%,-52%)}}
+.virus-icon{font-size:80px;color:#ff0000;animation:virusPulse 1s infinite;margin-bottom:20px;}
+@keyframes virusPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.alert-title{font-size:36px;color:#ff0000;font-weight:bold;margin-bottom:15px;text-shadow:0 0 20px #ff0000;animation:textFlicker 0.3s infinite;}
+@keyframes textFlicker{0%,100%{opacity:1}50%{opacity:0.8}}
+.alert-message{font-size:18px;color:#ffff00;margin:10px 0;text-shadow:0 0 10px #ffff00;}
+.virus-info{background:rgba(255,0,0,0.2);border:2px solid #ff0000;padding:20px;margin:20px 0;border-radius:10px;}
+.scanning{font-size:16px;color:#00ff00;margin:15px 0;font-family:monospace;}
+.progress-bar{width:100%;height:20px;background:#333;border:2px solid #ff0000;border-radius:10px;overflow:hidden;margin:15px 0;}
+.progress-fill{height:100%;background:linear-gradient(90deg,#ff0000,#ff6600);width:87%;animation:progressUpdate 3s ease-in-out infinite;}
+@keyframes progressUpdate{0%{width:0%}100%{width:87%}}
+.hacker-credit{color:#00ff00;font-weight:bold;text-shadow:0 0 10px #00ff00;}
+.warning-text{color:#ff0000;font-weight:bold;animation:warningBlink 1s infinite;}
+@keyframes warningBlink{0%,100%{opacity:1}50%{opacity:0.3}}
+</style></head><body>
+<div class="warning-overlay">
+<div class="virus-alert">
+<div class="virus-icon">🦠</div>
+<div class="alert-title">CRITICAL VIRUS DETECTED!</div>
+<div class="alert-message">Your system has been compromised!</div>
+<div class="virus-info">
+<div class="warning-text">⚠️ IMMEDIATE ACTION REQUIRED ⚠️</div>
+<div class="scanning">Scanning system... Threats found: 47</div>
+<div class="progress-bar">
+<div class="progress-fill"></div>
+</div>
+<div>Malware Type: XSS Injection Trojan</div>
+<div>Severity Level: CRITICAL</div>
+<div>Files Infected: 1,247</div>
+<div>Data at Risk: ALL PERSONAL FILES</div>
+</div>
+<div class="alert-message">This is actually an XSS vulnerability demonstration</div>
+<div class="alert-message">Your web application is not properly sanitizing inputs</div>
+<div class="alert-message">Security audit by: <span class="hacker-credit">[HACKER_NAME]</span></div>
+<div class="alert-message">Timestamp: <script>document.write(new Date().toLocaleString())</script></div>
+</div>
+</div>
+<script>
+setInterval(()=>{
+document.body.style.backgroundColor = Math.random()>0.9 ? '#330000' : '#1a0000';
+},200);
+</script>
+</body></html>`
     }
   ];
 
@@ -346,7 +562,8 @@ Performed by: [Security Researcher] | Report generated automatically
   };
 
   const getCurrentTemplate = (template: DefaceTemplate) => {
-    return editableTemplates[template.id] || template.template;
+    const templateContent = editableTemplates[template.id] || template.template;
+    return templateContent.replace(/\[HACKER_NAME\]/g, userName);
   };
 
   const getStyleColor = (style: string) => {
@@ -362,6 +579,30 @@ Performed by: [Security Researcher] | Report generated automatically
 
   return (
     <div className="space-y-6">
+      {/* Name Input Section */}
+      <Card className="bg-gray-900/50 border-gray-700">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold text-white flex items-center">
+            <User className="h-4 w-4 mr-2 text-cyan-400" />
+            Personalize Templates
+          </CardTitle>
+          <CardDescription className="text-gray-300">
+            Enter your hacker handle to personalize all defacement templates
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Input
+            value={userName}
+            onChange={(e) => setUserName(e.target.value || 'Anonymous Hacker')}
+            placeholder="Enter your hacker name..."
+            className="bg-black/50 border-gray-600 text-white placeholder:text-gray-400"
+          />
+          <p className="text-xs text-gray-400 mt-2">
+            This name will replace [HACKER_NAME] in all templates
+          </p>
+        </CardContent>
+      </Card>
+
       <div className="grid gap-6 lg:grid-cols-2">
         {templates.map((template) => (
           <Card key={template.id} className="bg-gray-900/50 border-gray-700 hover:border-red-500/50 transition-all duration-300">

